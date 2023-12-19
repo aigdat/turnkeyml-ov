@@ -10,7 +10,7 @@ from statistics import mean
 import platform
 import turnkeyml.run.plugin_helpers as plugin_helpers
 
-ORT_OPENVINO_VERSION = "1.16.0"
+ORT_OPENVINO_VERSION = "1.16.3"
 
 BATCHSIZE = 1
 

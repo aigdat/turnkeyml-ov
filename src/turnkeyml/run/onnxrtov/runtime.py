@@ -3,9 +3,9 @@ import os
 import numpy as np
 from turnkeyml.run.basert import BaseRT
 import turnkeyml.common.exceptions as exp
-from turnkeyml.run.onnxrt.execute import ORT_OPENVINO_VERSION
+from turnkeyml.run.onnxrtov.execute import ORT_OPENVINO_VERSION
 from turnkeyml.common.filesystem import Stats
-from turnkeyml.run.onnxrt.execute import create_conda_env, execute_benchmark
+from turnkeyml.run.onnxrtov.execute import create_conda_env, execute_benchmark
 import turnkeyml.run.plugin_helpers as plugin_helpers
 
 
@@ -17,7 +17,7 @@ class OnnxRTOpenVino(BaseRT):
         stats: Stats,
         iterations: int,
         device_type: str,
-        runtime: str = "ort",
+        runtime: str = "ortov",
         tensor_type=np.array,
         model=None,
         inputs=None,
@@ -58,7 +58,10 @@ class OnnxRTOpenVino(BaseRT):
 
         try:
             # Create and setup the conda env
-            create_conda_env(conda_env_name, openvino_requirements)
+            create_conda_env(conda_env_name=conda_env_name, 
+                             requirements=openvino_requirements,
+                             python_version="3.10"
+                             )
         except Exception as e:
             raise plugin_helpers.CondaError(
                 f"Conda env setup failed with exception: {e}"
