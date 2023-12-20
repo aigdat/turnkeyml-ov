@@ -101,7 +101,7 @@ def execute_benchmark(
         )
 
     cpu_performance = get_cpu_specs()
-    cpu_performance["OnnxRuntime Version"] = str(ORT_VERSION)
+    cpu_performance["OnnxRuntime Version"] = str(ORT_OPENVINO_VERSION)
     cpu_performance["Mean Latency(ms)"] = str(mean(per_iteration_latency) * 1000)
     cpu_performance["Throughput"] = str(BATCHSIZE / mean(per_iteration_latency))
     cpu_performance["Min Latency(ms)"] = str(min(per_iteration_latency) * 1000)
